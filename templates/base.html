@@ -1,0 +1,52 @@
+<!DOCTYPE html>{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+        <title>Category-Products |{% block title %}{% endblock %}</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% block extrahead %}
+    {% endblock %}
+    <!-- CSS ================================================== -->
+
+    <link rel="stylesheet" href="{% static 'vendor/mdi-font/css/material-design-iconic-font.min.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/font-awesome-4.7/css/font-awesome.min.css' %}">
+    <!-- icons
+    ================================================== -->
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'vendor/select2/select2.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Bowlby+One" />
+    <link rel = "stylesheet" href ="{% static 'css/main.css' %}">
+
+
+    <!-- Title Page-->
+    <title>Registeration API</title>
+
+
+
+</head>
+<body>
+
+    <!-- Body -->
+
+    {% block content %}
+
+
+    {% endblock %}
+
+    <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'vendor/select2/select2.min.js' %}"></script>
+    <script src="{% static 'vendor/datepicker/moment.min.js' %}"></script>
+    <script src="{% static 'vendor/datepicker/daterangepicker.js' %}"></script>
+    <script src="{% static 'js/global.js' %}"></script>
+
+
+</body>
+</html>
