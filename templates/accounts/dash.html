@@ -1,33 +1,42 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
+<style>
+.alert{
+  color: white;
+font-size: 16px;
+font-style: normal;
+}
+</style>
 
     <div class="page-wrapper bg-gra-01 p-t-180 p-b-100 font-poppins">
         <div class="wrapper wrapper--w780">
             <div class="card card-3">
                 <div class="card-heading"></div>
-                <div class="card-body">
+                <div class="card-body">{% include 'partials/_alerts.html' %}
 
                     <h2 class="title">Welcome {{ first_name }} {{ last_name }}</h2>
 
 
-                    {% include 'partials/_alerts.html' %}
+
 
                         <div class="input-group">
-                            <input class="input--style-3" type="text" value="{{ email }}" readonly>
+                          <p style="color:white;">Email</p>   <input class="input--style-3" type="text" value="{{ email }}" readonly>
+                        </div>
+                    <div class="input-group">
+                           <p style="color:white;">Phone</p>  <input class="input--style-3" type="text" value="{{ phone }}" readonly>
                         </div>
 
                         <div class="input-group">
-                            <input class="input--style-3" type="text" value="{{ username }}" readonly>
+                           <p style="color:white;">Username</p>  <input class="input--style-3" type="text" value="{{ username }}" readonly>
                         </div>
                      <div class="input-group">
-                            <input class="input--style-3" type="text" value="{{ username }}" readonly>
+                          <p style="color:white;">Address</p> <input class="input--style-3" type="text" value="{{ address }}" readonly>
                         </div>
 
 
                         <div class="p-t-10">
-                            <button class="btn btn--pill btn--green" type="submit"><a href="{% url 'login' %}">Login</a></button>
+                            <button class="btn btn--pill btn--green" type="submit"><a href="{% url 'dash' %}">Home</a></button>
                         </div>
                     <br>
                 </div>

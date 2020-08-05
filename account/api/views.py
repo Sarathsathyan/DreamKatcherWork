@@ -6,8 +6,10 @@ from django.shortcuts import render,redirect
 from django.contrib import messages
 from account.models import UserMore
 # Register API
+from django.views import View
 class RegisterAPI(generics.GenericAPIView):
     serializer_class = RegisterSerializer
+
     def get(self,request):
 
         return render(request,"accounts/register.html")
@@ -16,10 +18,17 @@ class RegisterAPI(generics.GenericAPIView):
         serializer.is_valid(raise_exception=True)
         user = serializer.save()
 
+        if request.method == 'POST':
+            phone = request.POST['phone']
+            address = request.POST['address']
+            data = UserMore(u_id=user.id,phone=phone,address=address)
+            data.save()
+
+
         context={
             "user": UserSerializer(user, context=self.get_serializer_context()).data,
             "token": AuthToken.objects.create(user)[1],
-            "message":"successfully registered"
+
         }
         messages.success(request,"Register successfully")
 
@@ -48,13 +57,36 @@ class LoginAPI(KnoxLoginView):
 
             login(request, user)
             if request.user.is_active:
+                return redirect('dash')
+        except:
+            print("error")
+        return super(LoginAPI, self).post(request, format=None)
+
+class dashboard(View):
+    def get(self,request):
+        try:
+
+            if request.user.is_active:
+                user = request.user
+                print(user.id)
+                data = UserMore.objects.get(u_id=user.id)
+                print(data.address)
                 context ={
                     "first_name":user.first_name,
                     "last_name":user.last_name,
                     "email":user.email,
-                    "username":user.username
+                    "username":user.username,
+                    "address":data.address,
+                    "phone":data.phone,
                 }
-                return render(request,"accounts/dash.html",context)
+                messages.success(request,"Login success")
+                return render(request,'accounts/dash.html',context)
         except:
             print("error")
-        return super(LoginAPI, self).post(request, format=None)
+        context = {
+            "first_name": user.first_name,
+            "last_name": user.last_name,
+            "email": user.email,
+        }
+        messages.error(request,"Incomplete profile")
+        return render(request,'accounts/dash.html',context)

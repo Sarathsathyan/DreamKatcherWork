@@ -8,14 +8,14 @@
             <div class="card card-3">
                 <div class="card-heading"></div>
                 <div class="card-body">
-
+                    {% include 'partials/_alerts.html' %}
                     <h2 class="title">Login Here</h2>
 
                     <form method="POST" action="http://127.0.0.1:8000/login/">
                         {% if token %}
                         <p style="color:white;">{{ token }}</p>
                     {% endif %}
-                    {% include 'partials/_alerts.html' %}
+
 
                         <div class="input-group">
                             <input class="input--style-3" type="text" placeholder="Username" name="username" required>
@@ -28,7 +28,7 @@
                             <button class="btn btn--pill btn--green" type="submit">Submit</button>
                         </div>
                     </form><br>
-                     <p style="color: white">Don't have account ? <a href="#">Register</a> </p>
+                     <p style="color: white">Don't have account ? <a href="{% url 'register' %}">Register</a> </p>
                 </div>
             </div>
         </div>
